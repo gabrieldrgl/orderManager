@@ -1,4 +1,7 @@
-<%= form_with(model: order) do |form| %>
+<%= form_with(model: order, data: {
+  controller: "nested-form",
+  nested_form_wrapper_selector_value: ".nested-form-wrapper"
+}) do |form| %>
   <% if order.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -16,7 +19,20 @@
     <%= form.text_field :customer_name, class: "form-control" %>
   </div>
 
+  <template data-nested-form-target="template">
+    <%= form.fields_for :items, Item.new, child_index: "NEW_RECORD" do |items_fields| %>
+      <%= render "item_form", f: items_fields %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :items  do |items_fields| %>
+    <%= render "item_form", f: items_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+
   <div class="d-flex flex-row-reverse gap-1">
     <%= form.submit class: "btn btn-primary" %>
+    <button data-action="nested-form#add" class="btn btn-success">add item</button>
   </div>
 <% end %>
