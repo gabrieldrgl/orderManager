@@ -12,16 +12,11 @@
   <% end %>
 
   <div>
-    <%= form.label :customer_name, style: "display: block" %>
-    <%= form.text_field :customer_name %>
+    <%= form.label :customer_name, class: "form-label" %>
+    <%= form.text_field :customer_name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :total_price, style: "display: block" %>
-    <%= form.text_field :total_price %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="d-flex flex-row-reverse gap-1">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

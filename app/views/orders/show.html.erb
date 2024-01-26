@@ -2,9 +2,37 @@
 
 <%= render @order %>
 
-<div>
-  <%= link_to "Edit this order", edit_order_path(@order) %> |
-  <%= link_to "Back to orders", orders_path %>
+<p>
+  <strong>Items:</strong>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit price</th>
+        <th scope="col">Discount</th>
+        <th scope="col">Total price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.items.each do |item| %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.unit_price %></td>
+          <td><%= item.discount %></td>
+          <td><%= item.total_price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
 
-  <%= button_to "Destroy this order", @order, method: :delete %>
+<div class="d-flex align-items-center justify-content-between">
+  <div>
+    <%= link_to "Edit this order", edit_order_path(@order), class: "btn btn-success" %>
+    <%= link_to "Back to orders", orders_path, class: "btn btn-primary" %>
+  </div>
+
+  <%= button_to "Destroy this order", @order, method: :delete, class: "btn btn-danger" %>
 </div>
