@@ -1,4 +1,4 @@
-<div class="nested-form-wrapper" data-controller="item-price" data-action="input->item-price#sumTotalPrice" data-new-record="<%= f.object.new_record? %>">
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
   <div>
     <h3>Item:</h3>
     <button type="button" data-action="nested-form#remove" class="btn btn-danger">Remove</button>
@@ -9,16 +9,13 @@
   <%= f.text_field :name, class: "form-control mb-3" %>
 
   <%= f.label :quantity, class: "form-label" %>
-  <%= f.text_field :quantity, class: "form-control mb-3", data: { item_price_target: "quantity" } %>
+  <%= f.text_field :quantity, class: "form-control mb-3" %>
 
   <%= f.label :unit_price, class: "form-label" %>
-  <%= f.text_field :unit_price, class: "form-control mb-3", data: { item_price_target: "unitPrice" } %>
+  <%= f.text_field :unit_price, class: "form-control mb-3" %>
 
   <%= f.label :discount, class: "form-label" %>
-  <%= f.text_field :discount, class: "form-control mb-3", data: { item_price_target: "discount" } %>
-
-  <%= f.label :total_price, class: "form-label" %>
-  <%= f.text_field :total_price, class: "form-control mb-3", data: { item_price_target: "totalPrice" } %>
+  <%= f.text_field :discount, class: "form-control mb-3" %>
 
   <%= f.hidden_field :_destroy %>
 </div>

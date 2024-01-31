@@ -7,9 +7,13 @@ class Order < ApplicationRecord
 
   before_save :calculate_total_price
 
+  def total_discount
+    items.sum(:discount)
+  end
+
   private
 
   def calculate_total_price
-    self.total_price = items.collect.map(&:total_price).sum
+    self.total_price = items.sum { |item| item.unit_price * item.quantity - item.discount }
   end
 end
